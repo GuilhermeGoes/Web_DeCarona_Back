@@ -20,4 +20,4 @@ app.use((error, request, response, next) => {
     response.json({ error: error.message });
 })
 
-app.listen(3333);
+app.listen(process.env.PORT || 3333); 
