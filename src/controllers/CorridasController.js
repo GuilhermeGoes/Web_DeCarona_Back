@@ -6,12 +6,12 @@ module.exports = {
         const results = await knex('corridas')
             .join('motoristas', 'corridas.id_motorista', '=', 'motoristas.id')
             .join('passageiros', 'corridas.id_passageiro', '=', 'passageiros.id')
-            .select('corridas.id', 'motoristas.nome', 'passageiros.nome', 'corridas.valor');
-
+            .select('corridas.id', 'motoristas.nome as nome_motorista', 
+                    'passageiros.nome as nome_passageiro', 'corridas.valor');
         const { page = 1 } = request.query;
         const query = knex('corridas')
-            .limit(10)
-            .offset((page - 1) * 10);
+            .limit(5)
+            .offset((page - 1) * 5);
 
         return response.json(results);
     },
